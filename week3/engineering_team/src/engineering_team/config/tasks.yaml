@@ -1,0 +1,201 @@
+# Phase 1: Analysis and Architecture
+requirements_analysis_task:
+  description: >
+    Analyze the given requirements and create detailed functional specifications.
+    Identify edge cases, user scenarios, and define clear acceptance criteria.
+    Requirements: {requirements}
+  expected_output: >
+    Detailed functional specifications document with refined requirements, edge cases, and acceptance criteria.
+  agent: requirements_analyst
+  output_file: output/{module_name}_requirements.md
+
+system_architecture_task:
+  description: >
+    Create a comprehensive system architecture for the {module_name} module based on the analyzed requirements.
+    Define system components, their interactions, and overall structure.
+    Requirements: {requirements}
+  expected_output: >
+    System architecture document outlining components, interfaces, and system design.
+  agent: system_architect
+  context:
+    - requirements_analysis_task
+  output_file: output/{module_name}_architecture.md
+
+test_strategy_task:
+  description: >
+    Create a comprehensive testing strategy and define test scenarios for the {module_name} module.
+    Include unit test plans, integration test plans, and edge case identification.
+    Requirements: {requirements}
+  expected_output: >
+    Testing strategy document with test scenarios, test cases, and testing approach.
+  agent: test_architect
+  context:
+    - requirements_analysis_task
+    - system_architecture_task
+  output_file: output/{module_name}_test_strategy.md
+
+ui_design_task:
+  description: >
+    Design the user interface and user experience for the {module_name} module.
+    Create wireframes and define user interaction flows for the Gradio interface.
+    Requirements: {requirements}
+  expected_output: >
+    UI/UX design document with wireframes, user flows, and interface specifications.
+  agent: ui_designer
+  context:
+    - requirements_analysis_task
+    - system_architecture_task
+  output_file: output/{module_name}_ui_design.md
+
+# Phase 2: Core Development
+data_model_task:
+  description: >
+    Implement data structures, models, and data processing components for the {module_name} module.
+    Focus on data validation, serialization, and efficient data handling based on the system architecture.
+    Requirements: {requirements}
+  expected_output: >
+    Python module containing data models and data processing components.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+  agent: data_engineer
+  context:
+    - system_architecture_task
+  output_file: output/{module_name}_data.py
+
+core_logic_task:
+  description: >
+    Implement the main business logic and algorithms for the {module_name} module.
+    Focus on the core functionality and business rules based on the system architecture.
+    Requirements: {requirements}
+  expected_output: >
+    Python module containing core business logic and algorithms.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+  agent: core_logic_engineer
+  context:
+    - system_architecture_task
+    - data_model_task
+  output_file: output/{module_name}_core.py
+
+api_interface_task:
+  description: >
+    Create APIs and interfaces for the {module_name} module based on the system architecture.
+    Design clean, well-documented interfaces that integrate data models and core logic.
+    Requirements: {requirements}
+  expected_output: >
+    Python module with API interfaces and integration points.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+  agent: api_engineer
+  context:
+    - system_architecture_task
+    - data_model_task
+    - core_logic_task
+  output_file: output/{module_name}_api.py
+
+main_module_task:
+  description: >
+    Integrate all components (data models, core logic, and APIs) into the main {module_name} module.
+    Create the primary {class_name} class that brings together all functionality.
+    Requirements: {requirements}
+  expected_output: >
+    Complete Python module that integrates all components into a cohesive {module_name} module.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+  agent: core_logic_engineer
+  context:
+    - data_model_task
+    - core_logic_task
+    - api_interface_task
+  output_file: output/{module_name}.py
+
+# Phase 3: Testing and Quality Assurance
+unit_testing_task:
+  description: >
+    Write comprehensive unit tests for all components of the {module_name} module.
+    Cover all functions, methods, edge cases, and error scenarios based on the test strategy.
+    Requirements: {requirements}
+  expected_output: >
+    Comprehensive unit test module with high code coverage.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+  agent: unit_test_engineer
+  context:
+    - test_strategy_task
+    - main_module_task
+  output_file: output/test_{module_name}.py
+
+integration_testing_task:
+  description: >
+    Create integration tests that verify component interactions within the {module_name} module.
+    Test the complete workflow and ensure all components work together seamlessly.
+    Requirements: {requirements}
+  expected_output: >
+    Integration test module that tests component interactions and workflows.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+  agent: integration_test_engineer
+  context:
+    - test_strategy_task
+    - main_module_task
+  output_file: output/integration_test_{module_name}.py
+
+security_review_task:
+  description: >
+    Review the {module_name} module for security vulnerabilities and implement security best practices.
+    Ensure input validation, secure data handling, and protection against common vulnerabilities.
+    Requirements: {requirements}
+  expected_output: >
+    Security analysis report and recommendations for the module.
+  agent: security_engineer
+  context:
+    - main_module_task
+  output_file: output/{module_name}_security_review.md
+
+performance_optimization_task:
+  description: >
+    Analyze and optimize the performance of the {module_name} module.
+    Identify bottlenecks, optimize algorithms, and ensure efficient resource utilization.
+    Requirements: {requirements}
+  expected_output: >
+    Performance analysis report with optimization recommendations and improved code snippets.
+  agent: performance_engineer
+  context:
+    - main_module_task
+  output_file: output/{module_name}_performance_report.md
+
+# Phase 4: User Interface and Documentation
+frontend_implementation_task:
+  description: >
+    Implement a Gradio-based frontend (app.py) that demonstrates the {module_name} module functionality.
+    Create an interactive, user-friendly interface based on the UI design specifications.
+    Requirements: {requirements}
+  expected_output: >
+    Gradio application that provides an intuitive interface for the module functionality.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+  agent: frontend_developer
+  context:
+    - ui_design_task
+    - main_module_task
+  output_file: output/app.py
+
+documentation_task:
+  description: >
+    Create comprehensive documentation for the {module_name} module including README, API docs, and usage examples.
+    Document all components, interfaces, and provide clear usage instructions.
+    Requirements: {requirements}
+  expected_output: >
+    Complete documentation package with README, API documentation, and usage examples.
+  agent: documentation_engineer
+  context:
+    - main_module_task
+    - frontend_implementation_task
+  output_file: output/{module_name}_documentation.md
+
+# Phase 5: Deployment and Operations
+deployment_setup_task:
+  description: >
+    Create deployment scripts, configuration files, and operational documentation for the {module_name} module.
+    Ensure the module is production-ready with proper error handling, logging, and monitoring.
+    Requirements: {requirements}
+  expected_output: >
+    Deployment package with scripts, configuration, and operational documentation.
+  agent: devops_engineer
+  context:
+    - main_module_task
+    - frontend_implementation_task
+  output_file: output/{module_name}_deployment.md

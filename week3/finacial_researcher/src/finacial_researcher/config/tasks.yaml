@@ -1,0 +1,155 @@
+# Financial Research Crew Tasks Configuration
+fundamental_analysis_task:
+  description: >
+    Conduct comprehensive fundamental analysis of {company} including:
+    1. Financial statement analysis (Income Statement, Balance Sheet, Cash Flow)
+    2. Key financial ratios and metrics calculation
+    3. Revenue and earnings growth analysis over 5 years
+    4. Profitability margins and efficiency metrics
+    5. Debt analysis and capital structure evaluation
+    6. DCF valuation model and price target estimation
+    7. Comparable company analysis with industry peers
+    8. Management effectiveness and strategic initiatives assessment
+    
+    Provide detailed calculations, assumptions, and methodology for all analyses.
+  expected_output: >
+    A comprehensive fundamental analysis report with financial models, ratio analysis,
+    valuation estimates, and investment thesis. Include charts, tables, and detailed
+    calculations with supporting data sources and methodology explanations.
+  agent: senior_equity_researcher
+  output_file: output/fundamental_analysis.md
+
+quantitative_risk_analysis_task:
+  description: >
+    Perform advanced quantitative analysis and risk assessment for {company}:
+    1. Historical volatility analysis and risk metrics (VaR, CVaR, Sharpe ratio)
+    2. Beta calculation and systematic risk assessment
+    3. Correlation analysis with market indices and sector peers
+    4. Monte Carlo simulation for price forecasting
+    5. Statistical arbitrage opportunities identification
+    6. Portfolio optimization scenarios and asset allocation recommendations
+    7. Stress testing under various market conditions
+    8. Liquidity risk and trading volume analysis
+    
+    Use statistical models and provide confidence intervals for all estimates.
+  expected_output: >
+    A detailed quantitative analysis report with statistical models, risk metrics,
+    simulation results, and portfolio optimization recommendations. Include
+    mathematical formulations, backtesting results, and model validation.
+  agent: quantitative_analyst
+  output_file: output/quantitative_analysis.md
+
+macroeconomic_market_analysis_task:
+  description: >
+    Analyze macroeconomic factors and market conditions affecting {company}:
+    1. Global and regional economic indicators impact assessment
+    2. Interest rate environment and monetary policy implications
+    3. Currency exchange rate effects on international operations
+    4. Commodity price trends and input cost analysis
+    5. Inflation expectations and purchasing power impact
+    6. Sector rotation trends and cyclical positioning
+    7. Geopolitical risks and regulatory environment analysis
+    8. Market sentiment indicators and technical analysis
+    
+    Connect macro trends to specific investment implications for the company.
+  expected_output: >
+    A comprehensive market strategist report linking macroeconomic conditions to
+    investment opportunities and risks. Include economic forecasts, scenario analysis,
+    and tactical asset allocation recommendations with time horizons.
+  agent: market_strategist
+  context:
+    - fundamental_analysis_task
+  output_file: output/market_strategy.md
+
+esg_sustainability_analysis_task:
+  description: >
+    Conduct comprehensive ESG analysis and sustainability assessment for {company}:
+    1. Environmental impact evaluation (carbon footprint, resource usage, waste management)
+    2. Social responsibility assessment (labor practices, community impact, diversity)
+    3. Corporate governance analysis (board composition, executive compensation, transparency)
+    4. ESG rating comparison with industry peers
+    5. Climate risk assessment and transition risk evaluation
+    6. Stakeholder engagement and materiality analysis
+    7. Sustainable finance opportunities and green bond potential
+    8. ESG integration into financial performance and valuation impact
+    
+    Use established ESG frameworks (GRI, SASB, TCFD) for comprehensive analysis.
+  expected_output: >
+    A detailed ESG analysis report with sustainability scores, risk assessments,
+    and recommendations for ESG-conscious investors. Include framework-based
+    evaluation, peer comparisons, and long-term sustainability outlook.
+  agent: esg_analyst
+  output_file: output/esg_analysis.md
+
+credit_analysis_task:
+  description: >
+    Perform comprehensive credit analysis and fixed income evaluation for {company}:
+    1. Credit rating assessment and probability of default calculation
+    2. Debt structure analysis and covenant compliance review
+    3. Liquidity analysis and cash flow adequacy assessment
+    4. Interest coverage ratios and debt service capability
+    5. Recovery analysis and loss given default estimation
+    6. Credit spread analysis and bond pricing evaluation
+    7. Peer comparison with similar credit profiles
+    8. Credit migration risk and rating change probability
+    
+    Provide credit recommendations for bond investors and lending decisions.
+  expected_output: >
+    A comprehensive credit analysis report with credit rating recommendations,
+    default probability models, bond valuations, and fixed income investment
+    guidance. Include credit metrics, peer analysis, and scenario stress testing.
+  agent: credit_analyst
+  context:
+    - fundamental_analysis_task
+  output_file: output/credit_analysis.md
+
+sector_competitive_analysis_task:
+  description: >
+    Conduct in-depth sector analysis and competitive intelligence for {company}:
+    1. Industry structure and competitive landscape mapping
+    2. Market share analysis and competitive positioning assessment
+    3. Industry growth drivers and cyclical patterns identification
+    4. Regulatory environment and policy impact analysis
+    5. Technological disruption threats and innovation opportunities
+    6. Supply chain analysis and vendor relationship assessment
+    7. Customer base analysis and market penetration strategies
+    8. Competitive advantages evaluation and moat sustainability
+    
+    Provide sector outlook and competitive positioning recommendations.
+  expected_output: >
+    A comprehensive sector analysis report with competitive landscape mapping,
+    industry forecasts, and strategic positioning recommendations. Include
+    Porter's Five Forces analysis, SWOT assessment, and competitive intelligence.
+  agent: sector_specialist
+  context:
+    - fundamental_analysis_task
+    - macroeconomic_market_analysis_task
+  output_file: output/sector_analysis.md
+
+portfolio_investment_decision_task:
+  description: >
+    Synthesize all research inputs and make final investment recommendations for {company}:
+    1. Integration of fundamental, quantitative, ESG, credit, and sector analyses
+    2. Risk-adjusted return expectations and investment thesis formulation
+    3. Portfolio allocation recommendations and position sizing guidance
+    4. Investment timeline and holding period recommendations
+    5. Key risk factors identification and mitigation strategies
+    6. Performance monitoring framework and exit criteria
+    7. Scenario analysis for bull, base, and bear cases
+    8. Final investment committee presentation and decision rationale
+    
+    Provide clear buy/sell/hold recommendations with supporting rationale.
+  expected_output: >
+    A comprehensive investment committee report with final recommendations,
+    portfolio allocation guidance, risk management framework, and executive
+    summary for decision makers. Include investment thesis, price targets,
+    and monitoring framework with clear action items.
+  agent: portfolio_manager
+  context:
+    - fundamental_analysis_task
+    - quantitative_risk_analysis_task
+    - macroeconomic_market_analysis_task
+    - esg_sustainability_analysis_task
+    - credit_analysis_task
+    - sector_competitive_analysis_task
+  output_file: output/investment_recommendation.md
