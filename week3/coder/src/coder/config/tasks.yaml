@@ -1,0 +1,20 @@
+coding_task:
+  description: >
+    Write python code to achieve this: {assignment}
+  expected_output: >
+    A text file that includes the code itself, along with the output of the code and time taken to run the code.
+  agent: coder
+  output_file: output/code_and_output.txt
+
+optimization_task:
+  description: >
+    Write super highly optimized C++ code from python code to achieve this: {assignment}
+    run the code and calculate the execution time it take(do not add any explanations).
+    run yourself and provide the time do not say that it will vary machine to machine.
+    You have to run and provide the execution time and the output of the code.
+  expected_output: >
+    A text file that includes the highly optimized C++ code itself, along with the execution time it take(do not add any explanations) and the output of the code.
+  agent: cpp_optimized_developer
+  context:
+    - coding_task
+  output_file: output/optimized_code_and_output.txt

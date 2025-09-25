@@ -1,0 +1,28 @@
+```text
+import time
+
+start_time = time.time()
+
+num_terms = 10000
+series_sum = 0.0
+
+for i in range(num_terms):
+    term = 1.0 / (2 * i + 1)
+    if i % 2 == 0:
+        series_sum += term
+    else:
+        series_sum -= term
+
+final_result = series_sum * 4
+
+end_time = time.time()
+execution_time = end_time - start_time
+
+print(f"The sum of the series multiplied by 4 is: {final_result}")
+print(f"Execution time: {execution_time} seconds")
+
+Code and output saved to series_calculation.txt
+
+The sum of the series multiplied by 4 is: 3.1414926535900345
+Execution time: 0.00408482551574707 seconds
+```
