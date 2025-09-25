@@ -1,0 +1,27 @@
+[project]
+name = "finacial_researcher"
+version = "0.1.0"
+description = "finacial_researcher using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.193.2,<1.0.0",
+    "ddgs>=9.6.0",
+    "duckduck>=0.0.3",
+    "langchain>=0.3.27",
+    "langchain-community>=0.3.29",
+]
+
+[project.scripts]
+finacial_researcher = "finacial_researcher.main:run"
+run_crew = "finacial_researcher.main:run"
+train = "finacial_researcher.main:train"
+replay = "finacial_researcher.main:replay"
+test = "finacial_researcher.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
